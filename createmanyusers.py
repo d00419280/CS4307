@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import RandomData
 import sqlite3
 import sys
@@ -15,5 +16,5 @@ def CreateManyUsers(numUsers):
     con.close()
 
 if len(sys.argv) > 1:
-    numUsers = sys.argv[1]
+    numUsers = int(sys.argv[1])
     CreateManyUsers(numUsers)

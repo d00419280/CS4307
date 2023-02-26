@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import RandomData
 import sqlite3
 import random
@@ -29,5 +30,5 @@ def CreatePosts(numPosts):
     con.close()
 
 if len(sys.argv) > 1:
-    numPosts = sys.argv[1]
+    numPosts = int(sys.argv[1])
     CreatePosts(numPosts)

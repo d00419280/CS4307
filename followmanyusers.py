@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sqlite3
 import random
 import sys
@@ -16,5 +17,5 @@ def FollowUsers(numFollows):
     con.close()
 
 if len(sys.argv) > 1:
-    numFollows = sys.argv[1]
+    numFollows = int(sys.argv[1])
     FollowUsers(numFollows)

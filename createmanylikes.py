@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sqlite3
 import random
 import sys
@@ -23,5 +24,5 @@ def CreateLikes(numLikes):
     con.close()
 
 if len(sys.argv) > 1:
-    numLikes = sys.argv[1]
+    numLikes = int(sys.argv[1])
     CreateLikes(numLikes)
