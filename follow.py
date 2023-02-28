@@ -2,7 +2,6 @@
 
 import sqlite3
 import sys
-from time import gmtime, strftime
 
 if len(sys.argv) > 2:
     email = sys.argv[1]
@@ -11,10 +10,17 @@ else:
     print("Provide your email and the email you want to follow")
     sys.exit(1)
 
-# Check both emails are valid?
-
 con = sqlite3.connect("SocialMediadb.db")
 cur = con.cursor()
+res = cur.execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
+if not res:
+    print(f"The user {email} does not exist")
+    sys.exit(1)
+res = cur.execute("SELECT * FROM users WHERE email = ?", (followed_email,)).fetchone()
+if not res:
+    print(f"The user {followed_email} does not exist")
+    sys.exit(1)
+
 res = cur.execute("INSERT INTO follows (email, followed_email) \
 VALUES(?, ?)", (email, followed_email))
 con.commit()

@@ -2,7 +2,6 @@
 
 import sqlite3
 import sys
-from time import gmtime, strftime
 
 if len(sys.argv) > 2:
     email = sys.argv[1]
@@ -13,6 +12,11 @@ else:
 
 con = sqlite3.connect("SocialMediadb.db")
 cur = con.cursor()
+res = cur.execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
+if res:
+    print(f"The user {email} already exists")
+    sys.exit(1)
+
 res = cur.execute("INSERT INTO users (email, password) \
 VALUES(?, ?)", (email, password))
 res = cur.execute("INSERT INTO follows (email, followed_email) \
